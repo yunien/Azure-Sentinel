@@ -1,4 +1,4 @@
-# OpenCTI Logic Apps Custom connector
+# FortiWeb Cloud Logic Apps Custom connector
 
 FortiWeb Cloud connector provides an API that uses Representational State Transfer (RESTful API) design principles to access and modify the settings of FortiWeb applications.
 ### Authentication methods this connector supports
@@ -26,7 +26,7 @@ FortiWeb Cloud connector provides an API that uses Representational State Transf
 1. Deploy the Custom Connector by clicking on "Deploy to Azure" button. This will take you to deplyoing an ARM Template wizard.
 2. Fill in the required paramteres:
     * Custom Connector Name : Enter the Custom connector name (ex:FortiWebCloud)
-    * OpenCTI Host URL: Enter the OpenCTI URL or Host (ex: api.fortiweb-cloud.com)
+    * FortiWeb Host URL: Enter the FortiWeb Cloud URL or Host (ex: api.fortiweb-cloud.com)
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2FAzure-Sentinel%2FSolutions%2F%2FortiWebCloud%2FPlaybooks%2FFortiWebCloudCustomConnector%2Fazuredeploy.json)
 [![Deploy to Azure Gov](https://aka.ms/deploytoazuregovbutton)](https://portal.azure.us/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2FAzure-Sentinel%2FSolutions%2F%2FortiWebCloud%2FPlaybooks%2FFortiWebCloudCustomConnector%2Fazuredeploy.json)
