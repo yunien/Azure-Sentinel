@@ -16,7 +16,7 @@
 
 2. Fill in the required paramteres:
     * Playbook Name: Enter the playbook name here (Ex: FortiWeb-BlockIP-URL)
-    * Custom Connector Name: Enter the OpenCTI custom connector name here (Ex: FortiWebCloud)
+    * Custom Connector Name: Enter the FortiWeb custom connector name here (Ex: FortiWebCloud)
 
 ### Post-Deployment instructions 
 #### a. Authorize connections
