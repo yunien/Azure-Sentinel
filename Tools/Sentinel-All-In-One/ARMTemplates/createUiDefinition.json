@@ -30,34 +30,6 @@
                     "validationMessage": "Only alphanumeric characters are allowed, and the value must be 1-30 characters long."
                 },
                 "visible": true
-            },
-            {
-                "name": "dailyQuota",
-                "type": "Microsoft.Common.TextBox",
-                "label": "Daily ingestion limit in GBs. Enter 0 for no limit.",
-                "placeholder": "",
-                "defaultValue": "0",
-                "toolTip": "This limit doesn't apply to the following tables: SecurityAlert, SecurityBaseline, SecurityBaselineSummary, SecurityDetection, SecurityEvent, WindowsFirewall, MaliciousIPCommunication, LinuxAuditLog, SysmonEvent, ProtectionStatus, WindowsEvent",
-                "constraints": {
-                    "required": true,
-                    "regex": "^[0-9]{1,4}$",
-                    "validationMessage": "Only numbers allowed, and the value must be 1-4 characters long."
-                },
-                "visible": true
-            },
-            {
-                "name": "dataRetention",
-                "type": "Microsoft.Common.TextBox",
-                "label": "Number of days of retention",
-                "placeholder": "",
-                "defaultValue": "90",
-                "toolTip": "Only numbers allowed",
-                "constraints": {
-                    "required": true,
-                    "regex": "([3-8][0-9]|9[0-9]|[1-6][0-9]{2}|7[0-2][0-9]|730)",
-                    "validationMessage": "Retention must be between 30 and 730 days."
-                },
-                "visible": true
             }
         ],
         "steps": [
@@ -173,70 +145,14 @@
                         "visible": "[if(contains(steps('dataConnectors').enableDataConnectorsKind,'SecurityEvents'), true, false)]"
                     }
                 ]
-            },
-            {
-                "name": "analyticsRules",
-                "label": "Analytics Rules",
-                "elements": [
-                    {
-                        "name": "enableFusionAlert",
-                        "type": "Microsoft.Common.CheckBox",
-                        "label": "Enable Fusion alert rule?",
-                        "toolTip": "Select to enable Fusion analyttic rule. Details here: https://docs.microsoft.com/azure/sentinel/fusion",
-                        "constraints": {
-                            "required": false,
-                            "validationMessage": "Please select"
-                        },
-                        "visible": true
-                    },
-                    {
-                        "name": "enableMicrosoftAlerts",
-                        "type": "Microsoft.Common.CheckBox",
-                        "label": "Enable Microsoft alert rules for selected connectors?",
-                        "toolTip": "Select to enable Microsoft rules for the connectors you selected in the previous step.",
-                        "constraints": {
-                            "required": false,
-                            "validationMessage": "Enables rules coming from selected Microsoft security products"
-                        },
-                        "visible": "[if(or(contains(steps('dataConnectors').enableDataConnectorsKind,'AzureAdvancedThreatProtection'),contains(steps('dataConnectors').enableDataConnectorsKind,'AzureActiveDirectoryIdentityProtection'),contains(steps('dataConnectors').enableDataConnectorsKind,'MicrosoftDefenderAdvancedThreatProtection'),contains(steps('dataConnectors').enableDataConnectorsKind,'AzureSecurityCenter'),contains(steps('dataConnectors').enableDataConnectorsKind,'MicrosoftCloudAppSecurity')), true, false)]"
-                    },
-                    {
-                        "name": "enableMLAlerts",
-                        "type": "Microsoft.Common.CheckBox",
-                        "label": "Enable ML Behavior Analytics alert rules?",
-                        "toolTip": "Select to enable ML Behavior Analytics rules for selected connectors (SecurityEvents and/or Syslog)",
-                        "constraints": {
-                            "required": false,
-                            "validationMessage": "Enables SSH and/or RDP anomalous login alerts"
-                        },
-                        "visible": "[if(or(contains(steps('dataConnectors').enableDataConnectorsKind,'Syslog'),contains(steps('dataConnectors').enableDataConnectorsKind,'SecurityEvents')), true, false)]"
-                    },
-                    {
-                        "name": "enableScheduledAlerts",
-                        "type": "Microsoft.Common.CheckBox",
-                        "label": "Enable Scheduled alert rules for selected connectors?",
-                        "toolTip": "Select to enable scheduled analytics rules for selected connectors",
-                        "constraints": {
-                            "required": false,
-                            "validationMessage": "Enables Scheduled rules matching any of the selected connectors"
-                        },
-                        "visible": true
-                    }
-                ]
             }
         ],
         "outputs": {
             "workspaceName": "[basics('workspaceName')]",
-            "dailyQuota": "[basics('dailyQuota')]",
-            "dataRetention": "[basics('dataRetention')]",
             "enableDataConnectorsKind": "[steps('dataConnectors').enableDataConnectorsKind]",
             "securityCollectionTier": "[steps('dataConnectors').securityCollectionTier]",
             "mcasDiscoveryLogs": "[steps('dataConnectors').mcasDiscoveryLogs]",
-            "location": "[location()]",
-            "enableFusionAlert": "[steps('analyticsRules').enableFusionAlert]",
-            "enableMicrosoftAlerts": "[steps('analyticsRules').enableMicrosoftAlerts]",
-            "enableMLAlerts": "[steps('analyticsRules').enableMLAlerts]",
-            "enableScheduledAlerts": "[steps('analyticsRules').enableScheduledAlerts]"
+            "location": "[location()]"
         }
     }
 }
